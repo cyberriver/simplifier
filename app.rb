@@ -11,7 +11,8 @@ class App
   private
 
   def serve_request(request)
-    [status, headers, body]
+    Router.new(request).route!
+    #[status, headers, body]
   end
 
   def status
