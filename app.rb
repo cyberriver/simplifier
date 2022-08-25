@@ -2,7 +2,9 @@ require 'rack'
 class App
 
   def call(env)
+    puts "REQUESTING RACK REQUEST......"
     request = Rack::Request.new(env)
+    puts "LOG: CORRECT #{request} #{request.path} "
     serve_request(request)
   end
 
