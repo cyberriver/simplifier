@@ -10,7 +10,7 @@ class App
 
   private
 
-  def serve_request
+  def serve_request(request)
     [status, headers, body]
   end
 
