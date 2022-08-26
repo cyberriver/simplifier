@@ -1,16 +1,14 @@
 class Router
-  def initialize(request, params)
+  def initialize(request)
     @request = request
-    @params = params
-    puts "options #{@params}"
   end
 
-  def route!
+  def route!(params)
     if @request.path == "/"
       [200, { "Content-Type" => "text/plain" }, ["Hello from the Router"]]
     else
       begin
-        send(@request.path.to_s[1..])
+        send(@request.path.to_s[1..],params)
       rescue NoMethodError => e
         puts "#{@request.path.to_s[1..]} resource is not_found"
         not_found
@@ -20,8 +18,8 @@ class Router
 
   private
 
-  def time
-    msg = Time.now.strftime(@params.join('-')).to_s
+  def time(params)
+    msg = Time.now.strftime(params.join('-')).to_s
     [200, { "Content-Type" => "text/plain" }, [msg]]
   end
 

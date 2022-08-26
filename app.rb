@@ -26,7 +26,7 @@ include Format
   end
 
   def serve_request(request, params)
-    Router.new(request,params).route!
+    Router.new(request).route!(params)
   end
 
   def incorrect_parameters(args)
