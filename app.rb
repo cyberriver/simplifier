@@ -21,20 +21,21 @@ include Format
   private
 
   def check_params(request)
+    puts "request #{request}"
     params = request.params
     verify_params(params["format"]) if has_format?(params)
   end
 
   def serve_request(request, params)
+    puts "request #{request} params #{params}"
     Router.new(request).route!(params)
   end
 
   def incorrect_parameters(args)
     msg = "Unknown time format #{args}"
-    [400, { "Content-Type" => "text/plain" }, [msg]]
+    response = Rack::Response.new(
+      [400, { "Content-Type" => "text/plain" }, [msg]]
+    )
   end
 
-  def set_params(request)
-
-  end
 end

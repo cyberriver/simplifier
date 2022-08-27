@@ -5,7 +5,9 @@ class Router
 
   def route!(params)
     if @request.path == "/"
-      [200, { "Content-Type" => "text/plain" }, ["Hello from the Router"]]
+      response = Rack::Response.new(
+        [200, { "Content-Type" => "text/plain" }, ["Hello from the Router"]]
+      )
     else
       begin
         send(@request.path.to_s[1..],params)
@@ -20,11 +22,15 @@ class Router
 
   def time(params)
     msg = Time.now.strftime(params.join('-')).to_s
-    [200, { "Content-Type" => "text/plain" }, [msg]]
+    response = Rack::Response.new(
+      [200, { "Content-Type" => "text/plain" }, [msg]]
+    )
   end
 
-  def not_found(msg = "Not Found")
-    [404, { "Content-Type" => "text/plain" }, [msg]]
+  def not_found
+    response = Rack::Response.new(
+      [404, { "Content-Type" => "text/plain" }, ["Not Found"]]
+    )
   end
 
 

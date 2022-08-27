@@ -17,8 +17,6 @@ module Format
     true if @diff.size == 0
   end
 
-
-
   private
 
   def split_params(params)
