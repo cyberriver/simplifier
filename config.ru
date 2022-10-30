@@ -1,6 +1,3 @@
-require_relative 'middleware/runtime'
-require_relative "app/router"
-require_relative 'app'
+require_relative 'config/environment'
 
-use Runtime
-run App.new
+run Simplier.application
