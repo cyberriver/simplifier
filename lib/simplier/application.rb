@@ -24,9 +24,26 @@ module Simplier
               
     end
 
+    def bootstrap!
+      require_app
+      require_routes
+    end
+
     private
+
+    def require_app
+      Dir["#{Simplier.root}/app/**/*.rb"].each { |file| require file}
+
+    end  #globbin technig
+
+    def require_routes
+      require Simplier.root.join('config/routes')
+    end
+
     def make_response(controller, action)
       controller.make_response(action)
     end
+
+
    end
 end
